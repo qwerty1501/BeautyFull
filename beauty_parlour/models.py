@@ -1,3 +1,6 @@
+from datetime import timedelta
+from django.utils import timezone
+
 from django.db import models
 
 
@@ -52,10 +55,10 @@ class Request(models.Model):
         to=Master, on_delete=models.CASCADE, verbose_name='Запись к мастеру',
     )
     time = models.TimeField(
-        verbose_name='Выбор времени'
+        verbose_name='Выбор времени', blank=True, null=True
     )
     date = models.DateField(
-        verbose_name='Выбор даты'
+        verbose_name='Выбор даты', blank=True, null=True
     )
     service = models.ForeignKey(
         to=Services, on_delete=models.CASCADE,
@@ -64,7 +67,7 @@ class Request(models.Model):
         max_length=255, verbose_name='Имя для записи'
     )
     phone = models.BigIntegerField(
-        max_length=255, verbose_name='Номер телефона клиента'
+        verbose_name='Номер телефона клиента'
     )
     sms = models.TextField(
         null=True, blank=True, verbose_name='Поле для смс'
@@ -72,5 +75,6 @@ class Request(models.Model):
 
     class Meta:
         db_table = 'request'
-        verbose_name = 'Услуга'
-        verbose_name_plural = 'Услуги'
+        verbose_name = 'Запись'
+        verbose_name_plural = 'Записи'
+
