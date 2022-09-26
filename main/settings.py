@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     # APP
     "beauty_parlour.apps.BeautyParlourConfig",
     
+    # DRF
+    'rest_framework',
+    
     # libraries
     'drf_yasg',
     "corsheaders",
@@ -96,6 +99,21 @@ DATABASES = {
     }
 }
 
+
+# DRF
+
+REST_FRAMEWORK = {
+    # 'DEFAULT_FILTER_BACKENDS': [
+    #     'django_filters.rest_framework.DjangoFilterBackend',
+    #  ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ]
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
