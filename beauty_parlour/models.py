@@ -21,10 +21,15 @@ class Master(models.Model):
         max_length=250, verbose_name='Позиция', null=True, blank=True
     )
 
+
     class Meta:
         db_table = 'masters'
         verbose_name = 'Мастер'
         verbose_name_plural = 'Мастера'
+        
+    def __str__(self):
+        return self.name
+    
 
 
 class Services(models.Model):
@@ -38,10 +43,15 @@ class Services(models.Model):
         to=Master, on_delete=models.CASCADE, verbose_name='Мастер'
     )
 
+
     class Meta:
         db_table = 'services'
         verbose_name = 'Услуга'
         verbose_name_plural = "Услуги"
+        
+    def __str__(self):
+        return self.title
+    
 
 
 class Request(models.Model):
@@ -52,10 +62,10 @@ class Request(models.Model):
         to=Master, on_delete=models.CASCADE, verbose_name='Запись к мастеру',
     )
     time = models.TimeField(
-        verbose_name='Выбор времени'
+        verbose_name='Выбор времени', auto_now=False, auto_now_add=False, blank=True, null=True
     )
     date = models.DateField(
-        verbose_name='Выбор даты'
+        verbose_name='Выбор даты', blank=True, null=True
     )
     service = models.ForeignKey(
         to=Services, on_delete=models.CASCADE,
@@ -64,13 +74,18 @@ class Request(models.Model):
         max_length=255, verbose_name='Имя для записи'
     )
     phone = models.BigIntegerField(
-        max_length=255, verbose_name='Номер телефона клиента'
+        verbose_name='Номер телефона клиента'
     )
     sms = models.TextField(
         null=True, blank=True, verbose_name='Поле для смс'
     )
 
+
     class Meta:
         db_table = 'request'
         verbose_name = 'Услуга'
         verbose_name_plural = 'Услуги'
+
+    def __str__(self):
+        return self.name
+    
