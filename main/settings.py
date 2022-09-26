@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,6 +49,10 @@ INSTALLED_APPS = [
     # libraries
     'drf_yasg',
     "corsheaders",
+    
+    # 'parler',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -136,6 +145,23 @@ STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 MEDIA_URL = '/media/'  # or any prefix you choose
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+# CLOUDINARY_STORAGE
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'motion-web',
+    'API_KEY': '591472536788477',
+    'API_SECRET': 'cOp1YqZvIuRt1BkYTTwvXHOk4XM'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+cloudinary.config( 
+                  cloud_name = "motion-web", 
+                  api_key = "591472536788477", 
+                  api_secret = "cOp1YqZvIuRt1BkYTTwvXHOk4XM", 
+                  secure = True 
+                  )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
