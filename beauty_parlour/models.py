@@ -29,6 +29,8 @@ class Master(models.Model):
 
 class Services(models.Model):
 
+    """ Модель для услуг """
+
     title = models.CharField(
         max_length=255, verbose_name='Название услуг'
     )
@@ -44,6 +46,31 @@ class Services(models.Model):
 
 class Request(models.Model):
 
-    master = models.ForeignKey(
+    """ Модель для Записи """
 
+    master = models.ForeignKey(
+        to=Master, on_delete=models.CASCADE, verbose_name='Запись к мастеру',
     )
+    time = models.TimeField(
+        verbose_name='Выбор времени'
+    )
+    date = models.DateField(
+        verbose_name='Выбор даты'
+    )
+    service = models.ForeignKey(
+        to=Services, on_delete=models.CASCADE,
+    )
+    name = models.CharField(
+        max_length=255, verbose_name='Имя для записи'
+    )
+    phone = models.BigIntegerField(
+        max_length=255, verbose_name='Номер телефона клиента'
+    )
+    sms = models.TextField(
+        null=True, blank=True, verbose_name='Поле для смс'
+    )
+
+    class Meta:
+        db_table = 'request'
+        verbose_name = 'Услуга'
+        verbose_name_plural = 'Услуги'
