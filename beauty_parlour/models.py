@@ -1,3 +1,6 @@
+from datetime import timedelta
+from django.utils import timezone
+
 from django.db import models
 
 
@@ -62,10 +65,10 @@ class Request(models.Model):
         to=Master, on_delete=models.CASCADE, verbose_name='Запись к мастеру',
     )
     time = models.TimeField(
-        verbose_name='Выбор времени', auto_now=False, auto_now_add=False, blank=True, null=True
+        verbose_name='Выбор времени', auto_now_add=True, blank=True, null=True
     )
     date = models.DateField(
-        verbose_name='Выбор даты', blank=True, null=True
+        verbose_name='Выбор даты', auto_now_add=True, blank=True, null=True
     )
     service = models.ForeignKey(
         to=Services, on_delete=models.CASCADE,
@@ -83,9 +86,8 @@ class Request(models.Model):
 
     class Meta:
         db_table = 'request'
-        verbose_name = 'Услуга'
-        verbose_name_plural = 'Услуги'
+        verbose_name = 'Запись'
+        verbose_name_plural = 'Записи'
 
     def __str__(self):
         return self.name
-    
