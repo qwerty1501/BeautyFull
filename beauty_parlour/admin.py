@@ -3,14 +3,14 @@ from django.contrib import admin
 from .models import Master, Services, Request
 # from modeltranslation.admin import TranslationAdmin
 # from ckeditor.widgets import CKEditorWidget
-from django import forms
+# from django import forms
 
 
-class MasterClassForm(forms.ModelForm):
+# class MasterClassForm(forms.ModelForm):
     
-    class Meta:
-        model = Master
-        fields = ['name', 'information', 'experience', 'position']
+#     class Meta:
+#         model = Master
+#         fields = ['name', 'information', 'experience', 'position']
         
         
 # @admin.register(Theme)

@@ -8,20 +8,44 @@ class Master(models.Model):
 
     """ Модель мастеров """
 
-    name = models.CharField(
-        max_length=250, null=True, blank=False, verbose_name='Имя'
+    name_ky = models.CharField(
+        max_length=250, null=True, blank=False, verbose_name='Ведите имя на Кыргызском'
+    )
+    name_en = models.CharField(
+        max_length=250, blank=True, null=True, verbose_name='Ведите имя на Англиском'
+    )
+    name_ru = models.CharField(
+        max_length=250, blank=True, null=True, verbose_name='Ведите имя на Русском'
     )
     picture = models.ImageField(
         null=True, blank=True, verbose_name='Картинка для профиля'
     )
-    information = models.TextField(
-        verbose_name='Информация', null=True, blank=True
+    information_ky = models.TextField(
+        verbose_name='Информация на Кыргызском', null=True, blank=True
     )
-    experience = models.TextField(
-        verbose_name='Опыт', null=True, blank=True
+    information_en = models.TextField(
+        verbose_name='Информация на Англиском', null=True, blank=True
     )
-    position = models.CharField(
-        max_length=250, verbose_name='Позиция', null=True, blank=True
+    information_ru = models.TextField(
+        verbose_name='Информация на Русском', null=True, blank=True
+    )
+    experience_ky = models.TextField(
+        verbose_name='Опишите свой опыт работы на Кыргызском', null=True, blank=True
+    )
+    experience_en = models.TextField(
+        verbose_name='Опишите свой опыт работы на Англиском', null=True, blank=True
+    )
+    experience_ru = models.TextField(
+        verbose_name='Опишите свой опыт работы на Русском', null=True, blank=True
+    )
+    position_ky = models.CharField(
+        max_length=250, verbose_name='Позиция на Кыргызском', null=True, blank=True
+    )
+    position_en = models.CharField(
+        max_length=250, verbose_name='Позиция на Англизском', null=True, blank=True
+    )
+    position_ru = models.CharField(
+        max_length=250, verbose_name='Позиция на Русском', null=True, blank=True
     )
 
 
@@ -31,7 +55,7 @@ class Master(models.Model):
         verbose_name_plural = 'Мастера'
         
     def __str__(self):
-        return self.name
+        return self.name_ru
     
 
 
@@ -39,8 +63,14 @@ class Services(models.Model):
 
     """ Модель для услуг """
 
-    title = models.CharField(
-        max_length=255, verbose_name='Название услуг'
+    title_ky = models.CharField(
+        max_length=255, blank=True, null=True, verbose_name='Название услуг на Кыргызском'
+    )
+    title_en = models.CharField(
+        max_length=255, blank=True, null=True, verbose_name='Название услуг на Англиском'
+    )
+    title_ru = models.CharField(
+        max_length=255, blank=True, null=True, verbose_name='Название услуг на Русском'
     )
     master = models.ForeignKey(
         to=Master, on_delete=models.CASCADE, verbose_name='Мастер'
@@ -53,7 +83,7 @@ class Services(models.Model):
         verbose_name_plural = "Услуги"
         
     def __str__(self):
-        return self.title
+        return self.title_ru
     
 
 
