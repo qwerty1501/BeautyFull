@@ -17,26 +17,28 @@ class Master(models.Model):
     name_ru = models.CharField(
         max_length=250, blank=True, null=True, verbose_name='Ведите имя на Русском'
     )
+    service = models.ForeignKey(
+        "Services", verbose_name='Название вашу услугу', on_delete=models.CASCADE)
     picture = models.ImageField(
         null=True, blank=True, verbose_name='Картинка для профиля'
     )
     information_ky = models.TextField(
-        verbose_name='Информация на Кыргызском', null=True, blank=True
+        verbose_name='Автобиография на Кыргызском', null=True, blank=True
     )
     information_en = models.TextField(
-        verbose_name='Информация на Англиском', null=True, blank=True
+        verbose_name='Автобиография на Англиском', null=True, blank=True
     )
     information_ru = models.TextField(
-        verbose_name='Информация на Русском', null=True, blank=True
+        verbose_name='Автобиография на Русском', null=True, blank=True
     )
-    experience_ky = models.TextField(
-        verbose_name='Опишите свой опыт работы на Кыргызском', null=True, blank=True
+    experience_ky = models.CharField(
+        max_length=255, verbose_name='Опишите свой опыт работы на Кыргызском', null=True, blank=True
     )
-    experience_en = models.TextField(
-        verbose_name='Опишите свой опыт работы на Англиском', null=True, blank=True
+    experience_en = models.CharField(
+        max_length=255, verbose_name='Опишите свой опыт работы на Англиском', null=True, blank=True
     )
-    experience_ru = models.TextField(
-        verbose_name='Опишите свой опыт работы на Русском', null=True, blank=True
+    experience_ru = models.CharField(
+        max_length=255, verbose_name='Опишите свой опыт работы на Русском', null=True, blank=True
     )
     position_ky = models.CharField(
         max_length=250, verbose_name='Позиция на Кыргызском', null=True, blank=True
@@ -71,9 +73,6 @@ class Services(models.Model):
     )
     title_ru = models.CharField(
         max_length=255, blank=True, null=True, verbose_name='Название услуг на Русском'
-    )
-    master = models.ForeignKey(
-        to=Master, on_delete=models.CASCADE, verbose_name='Мастер'
     )
 
 
